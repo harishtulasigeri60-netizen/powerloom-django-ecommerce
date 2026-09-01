@@ -1,0 +1,42 @@
+POWERLOOM FINAL — QUICK START (WINDOWS)
+
+1. Open PowerShell in this folder.
+2. Create virtual environment:
+   python -m venv venv
+3. Activate it:
+   .\venv\Scripts\Activate.ps1
+4. Install dependencies (use this, not plain pip):
+   python -m pip install --upgrade pip
+   python -m pip install -r requirements.txt
+5. Prepare database + demo data:
+   python manage.py bootstrap
+6. Start server:
+   python manage.py runserver
+7. Open:
+   http://127.0.0.1:8000/
+
+Demo admin:    admin / admin12345
+Demo customer: customer / customer12345
+
+If PowerShell blocks activation:
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+ROLE-BASED ACCESS
+-----------------
+The application now separates customer and administrator workspaces.
+
+Customer:
+- Browse active sarees, search/filter, wishlist, cart, checkout, orders, profile and reviews.
+- Cannot access product editing, category management, inventory, customer management or order-status controls.
+
+Admin:
+- Workshop dashboard, catalogue/product editing, custom saree categories, price and stock management.
+- Inventory movement history, customer management, order status control, coupons/offers and weaver/craft management.
+- Cannot use customer cart/checkout purchasing routes.
+
+LOGIN
+-----
+The login screen first asks whether you are entering as Customer or Admin.
+Demo accounts remain:
+Admin: admin / admin12345
+Customer: customer / customer12345

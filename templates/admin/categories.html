@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Saree Categories · Powerloom{% endblock %}
+{% block body %}
+<section class="simple-head admin-simple"><span class="kicker">ADMIN · CATALOGUE STRUCTURE</span><h1>Saree categories</h1><p>Create and control the categories customers use to discover the collection.</p></section>
+<section class="editor-layout">
+  <div class="editor-card"><span class="kicker">NEW CATEGORY</span><h2>Add a category</h2><form method="post">{% csrf_token %}{% for f in form %}<label>{{ f.label }}{{ f }}{% if f.errors %}<small class="field-error">{{ f.errors.0 }}</small>{% endif %}</label>{% endfor %}<button class="gold-btn">Create category →</button></form></div>
+  <div class="admin-panel"><span class="kicker">CATEGORY DIRECTORY</span>{% for c in categories %}<div class="category-admin-row"><div><b>{{ c.name }}</b><small>{{ c.slug }}{% if c.description %} · {{ c.description }}{% endif %}</small></div><span class="status">{% if c.active %}Active{% else %}Hidden{% endif %}</span><form method="post" action="/admin/categories/{{ c.id }}/toggle/">{% csrf_token %}<button class="outline-btn">{% if c.active %}Hide{% else %}Activate{% endif %}</button></form></div>{% empty %}<p class="muted">No categories yet.</p>{% endfor %}</div>
+</section>
+{% endblock %}

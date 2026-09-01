@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Edit Customer · Powerloom{% endblock %}
+{% block body %}
+<section class="simple-head admin-simple"><span class="kicker">ADMIN · CUSTOMER PROFILE</span><h1>Edit customer</h1><p>Update customer contact and delivery information.</p></section>
+<section class="editor-layout"><div class="editor-card"><form method="post">{% csrf_token %}{% for f in form %}<label>{{ f.label }}{{ f }}{% if f.errors %}<small class="field-error">{{ f.errors.0 }}</small>{% endif %}</label>{% endfor %}<div class="form-actions"><a href="/admin/customers/">Cancel</a><button class="gold-btn">Save customer →</button></div></form></div><aside class="editor-note"><h3>Access boundary</h3><p>This screen manages customer information only. Product, pricing, inventory and order controls remain inside the administrator workspace.</p></aside></section>
+{% endblock %}

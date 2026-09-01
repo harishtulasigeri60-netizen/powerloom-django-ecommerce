@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ product.name }} · Powerloom{% endblock %}
+{% block body %}
+<section class="detail-page">
+  <div class="detail-media reveal visible">
+    <div class="detail-photo"><img id="main-product-image" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/saree-1.png' %}{% endif %}" alt="{{ product.name }}"><span>POWERLOOM · {{ product.sku }}</span><div class="photo-badge">HANDLED WITH CARE</div></div>
+    {% if product.gallery.all %}<div class="detail-thumbs">{% for image in product.gallery.all %}<button type="button" data-gallery-image="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="{{ image.alt|default:product.name }}"></button>{% endfor %}</div>{% endif %}
+  </div>
+  <div class="detail-copy reveal visible">
+    <div class="detail-top"><span class="eyebrow">{{ product.get_category_display }} · {{ product.fabric }}</span><button class="wish-btn large" type="button" data-wishlist="{{ product.id }}">♡ Save</button></div>
+    <h1>{{ product.name }}</h1><p class="detail-description">{{ product.description }}</p>
+    <div class="rating-line"><span>★★★★★</span><small>{{ reviews|length }} verified review{{ reviews|length|pluralize }}</small></div>
+    <div class="price-hero"><strong>₹{{ product.price|floatformat:2 }}</strong>{% if product.compare_at_price %}<del>₹{{ product.compare_at_price|floatformat:2 }}</del><span>{{ product.discount_percent }}% considered value</span>{% endif %}</div>
+    <div class="specs"><div><span>SIZE</span><b>{{ product.size }}</b></div><div><span>FABRIC</span><b>{{ product.fabric }}</b></div><div><span>ORIGIN</span><b>{{ product.origin }}</b></div></div>
+    <div class="stock-meter"><span>AVAILABILITY</span><b>{% if product.stock %}{{ product.stock }} pieces{% else %}Sold out{% endif %}</b><div><i style="width:{% if product.stock > 20 %}100{% elif product.stock > 10 %}65{% elif product.stock > 0 %}30{% else %}0{% endif %}%"></i></div></div>
+    <div class="detail-buy">{% if user.is_authenticated and not user.is_staff and product.stock %}<form method="post" action="/cart/add/{{ product.id }}/">{% csrf_token %}<div class="qty-control"><button type="button" data-step="-1">−</button><input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}"><button type="button" data-step="1">+</button></div><button class="gold-btn" type="submit">Add to cart <span>→</span></button></form>{% elif not user.is_authenticated %}<a class="gold-btn" href="/login/">Login to purchase →</a>{% else %}<span class="sold">Not available</span>{% endif %}</div>
+    <div class="trust-row"><span>✓ Server-verified pricing</span><span>✓ Stock checked at checkout</span><span>✓ PDF receipt</span></div>
+  </div>
+</section>
+
+<section class="story-grid">
+  <div class="story-intro reveal"><span class="eyebrow">THE MAKING</span><h2>From yarn to heirloom.</h2><p>Trace the journey of this piece through the workshop, from preparation to finishing. Every stage is part of the product story.</p>{% if product.weaver %}<div class="weaver-card"><span class="eyebrow">WEAVER UNIT</span><h3>{{ product.weaver.name }}</h3><p>{{ product.weaver.location }} · {{ product.weaver.years }} years</p><small>{{ product.weaver.specialization }}</small></div>{% endif %}</div>
+  <div class="trace-line reveal">{% for t in product.trace_steps.all %}<div class="trace-step {% if t.completed %}done{% endif %}"><i>{{ t.step }}</i><div><b>{{ t.title }}</b><p>{{ t.description }}</p></div></div>{% empty %}<div class="trace-step done"><i>1</i><div><b>Powerloom weaving</b><p>Woven and finished through a carefully controlled workshop process.</p></div></div>{% endfor %}</div>
+  {% if user.is_authenticated and not user.is_staff %}<div class="review-form-card reveal"><span class="eyebrow">VERIFIED PURCHASE</span><h3>Share your experience</h3><p>Reviews unlock after a delivered purchase of this saree.</p><form method="post" action="/order/{{ product.id }}/review/">{% csrf_token %}{% for f in review_form %}<label>{{ f.label }}{{ f }}</label>{% endfor %}<button class="gold-btn" type="submit">Submit review →</button></form></div>{% endif %}
+</section>
+
+<section class="review-section"><div class="section-head reveal"><div><span class="eyebrow">CUSTOMER VOICES</span><h2>Reviews</h2></div><div class="rating-big">{% if avg_rating %}{{ avg_rating|floatformat:1 }} / 5{% endif %}</div></div><div class="review-grid">{% for r in reviews %}<article class="review reveal"><span>★★★★★</span><h3>{{ r.title|default:'A beautiful piece' }}</h3><p>{{ r.body }}</p><small>{{ r.customer.name }} · {{ r.created_at|date:'d M Y' }}</small></article>{% empty %}<div class="empty-state">Be the first to review this saree after delivery.</div>{% endfor %}</div></section>
+
+<section class="collection"><div class="section-head reveal"><div><span class="eyebrow">YOU MAY ALSO LIKE</span><h2>Related weaves</h2></div></div><div class="product-grid">{% for p in related %}<a class="product-tile reveal" href="/product/{{ p.id }}/"><div class="tile-image"><img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/saree-2.png' %}{% endif %}"></div><div class="tile-info"><h3>{{ p.name }}</h3><strong>₹{{ p.price|floatformat:2 }}</strong></div></a>{% endfor %}</div></section>
+{% endblock %}
+{% block scripts %}<script>document.querySelectorAll('[data-gallery-image]').forEach(b=>b.addEventListener('click',()=>document.getElementById('main-product-image').src=b.dataset.galleryImage));</script>{% endblock %}

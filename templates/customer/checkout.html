@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Checkout · Powerloom{% endblock %}
+{% block body %}
+<section class="simple-head"><span class="eyebrow">FINAL STEP</span><h1>Place your order</h1><p>Secure checkout with server-side price, discount and stock validation.</p></section>
+<div class="checkout-progress"><span class="done">01 · Cart</span><span class="active">02 · Details</span><span>03 · Payment</span><span>04 · Confirmation</span></div>
+<section class="checkout-layout">
+  <div class="checkout-card reveal"><div class="card-heading"><span class="eyebrow">DELIVERY DETAILS</span><h2>Where should we send it?</h2></div><form method="post">{% csrf_token %}<div class="form-grid">{% for field in form %}<label>{{ field.label }}{{ field }}{% if field.errors %}<small class="field-error">{{ field.errors.0 }}</small>{% endif %}</label>{% endfor %}</div><button class="gold-btn" type="submit">Confirm order <span>→</span></button></form></div>
+  <aside class="summary sticky-summary reveal"><span class="eyebrow">ORDER SUMMARY</span>{% for item in items %}<div class="checkout-item"><div><span>{{ item.product.name }}</span><small>{{ item.quantity }} × ₹{{ item.price|floatformat:2 }}</small></div><b>₹{{ item.subtotal|floatformat:2 }}</b></div>{% endfor %}<div class="price-breakdown"><div><span>Subtotal</span><b>₹{{ subtotal|floatformat:2 }}</b></div><div><span>Discount</span><b>- ₹{{ discount|floatformat:2 }}</b></div><div><span>Delivery</span><b>₹{{ shipping|floatformat:2 }}</b></div><div><span>Tax</span><b>₹{{ tax|floatformat:2 }}</b></div></div><div class="total-line"><span>Total</span><b>₹{{ total|floatformat:2 }}</b></div>{% if coupon %}<small class="coupon-applied">✓ {{ coupon.code }} applied</small>{% endif %}</aside>
+</section>
+{% endblock %}

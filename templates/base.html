@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202920">
+  <meta name="description" content="Powerloom — woven craft, commerce and traceability.">
+  <title>{% block title %}Powerloom{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}?v=20260831">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div id="page-loader" class="page-loader" aria-hidden="true"><span class="loader-thread"></span><span class="loader-word">POWERLOOM</span></div>
+  <header class="site-nav">
+    <a class="logo" href="/" aria-label="Powerloom home">
+      <span class="logo-mark">P</span>
+      <span class="logo-type"><b>POWERLOOM</b><small>WEAVING · CRAFT · HERITAGE</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav">
+      {% if not user.is_authenticated or not user.is_staff %}<a href="/catalog/">Saree Collection</a>{% endif %}
+      {% if user.is_authenticated and not user.is_staff %}
+        <a href="/wishlist/">Wishlist</a>
+        <a href="/my-orders/">My Orders</a>
+        <a class="cart-link" href="/cart/">Cart <strong>{{ cart_count }}</strong></a>
+        <a href="/notifications/">Alerts{% if unread_notifications %} <strong>{{ unread_notifications }}</strong>{% endif %}</a>
+      {% endif %}
+      {% if user.is_authenticated and user.is_staff %}
+        <a href="/admin-dashboard/">Workshop</a>
+        <a href="/admin/inventory/">Inventory</a>
+        <a href="/admin/coupons/">Offers</a>
+        <a href="/admin/categories/">Categories</a><a href="/admin/customers/">Customers</a><a href="/admin/weavers/">Craft</a>
+      {% endif %}
+    </nav>
+    <div class="nav-user">
+      {% if user.is_authenticated %}
+        <a class="user-chip" href="{% if user.is_staff %}/admin-dashboard/{% else %}/profile/{% endif %}">{{ user.username }}</a>
+        <a href="/logout/">Logout</a>
+      {% else %}
+        <a href="/login/">Login</a>
+        <a class="nav-cta" href="/register/">Create account</a>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if messages %}
+  <div class="messages" aria-live="polite">
+    {% for message in messages %}
+      <div class="message {{ message.tags }}"><span>{{ message }}</span><button type="button" aria-label="Dismiss">×</button></div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <main>{% block body %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <b>POWERLOOM</b>
+      <p>From the loom to your home.<br>Supporting local weaving & timeless Indian craft.</p>
+    </div>
+    <div><span>COLLECTION</span><a href="/catalog/">Sarees</a><a href="/catalog/?category=handloom">Handloom</a><a href="/catalog/?category=cotton">Cotton</a></div>
+    <div><span>ACCOUNT</span><a href="/login/">Login</a><a href="/register/">Customer account</a></div>
+    <div class="footer-mark" aria-hidden="true">✦</div>
+    <div class="footer-bottom">POWERLOOM · A concept commerce platform for Indian weaving</div>
+  </footer>
+
+  <script src="{% static 'js/app.js' %}?v=20260831"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

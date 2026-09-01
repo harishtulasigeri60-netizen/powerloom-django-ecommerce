@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Sign in · Powerloom{% endblock %}
+{% block body %}
+{% if role_select %}
+<div class="auth-page role-gateway">
+  <div class="auth-art"><span class="kicker">POWERLOOM ACCESS</span><h1>Choose your<br><em>workspace.</em></h1><p>Customers shop the collection. Administrators run the workshop, inventory and order operations.</p></div>
+  <div class="auth-card role-card">
+    <span class="kicker">SECURE ENTRY</span><h2>Sign in as</h2>
+    <div class="role-options">
+      <a class="role-option" href="/login/?role=customer{% if next %}&next={{ next|urlencode }}{% endif %}"><strong>Customer</strong><span>Browse sarees, save favourites, shop and track your orders.</span><b>Continue →</b></a>
+      <a class="role-option admin-option" href="/login/?role=admin{% if next %}&next={{ next|urlencode }}{% endif %}"><strong>Admin</strong><span>Manage catalogue, categories, pricing, inventory, customers and orders.</span><b>Enter workshop →</b></a>
+    </div>
+    <p class="auth-foot">New customer? <a href="/register/">Create an account</a></p>
+  </div>
+</div>
+{% else %}
+<div class="auth-page">
+  <div class="auth-art"><span class="kicker">{% if role == 'admin' %}WORKSHOP ACCESS{% else %}CUSTOMER ACCESS{% endif %}</span><h1>{% if role == 'admin' %}Enter the<br><em>workshop.</em>{% else %}Welcome to<br><em>the loom.</em>{% endif %}</h1><p>{% if role == 'admin' %}Business controls are restricted to authorised Powerloom administrators.{% else %}Browse the collection, place orders and follow every weave to your doorstep.{% endif %}</p></div>
+  <div class="auth-card"><span class="kicker">{% if role == 'admin' %}ADMIN LOGIN{% else %}CUSTOMER LOGIN{% endif %}</span><h2>Sign in</h2>
+    <form method="post">{% csrf_token %}<input type="hidden" name="role" value="{{ role }}"><input type="hidden" name="next" value="{{ next }}"><label>Username<input name="username" required autofocus></label><label>Password<input name="password" type="password" required></label><button class="gold-btn full">{% if role == 'admin' %}Enter workshop{% else %}Continue shopping{% endif %} →</button></form>
+    <p class="auth-foot"><a href="/login/">← Choose another account type</a></p>
+    {% if role == 'customer' %}<p class="auth-foot">New customer? <a href="/register/">Create an account</a></p>{% endif %}
+    {% if role == 'admin' %}<div class="demo-box"><b>Demo admin</b><br>admin / admin12345</div>{% endif %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}

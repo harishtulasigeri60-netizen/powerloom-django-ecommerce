@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Customers · Powerloom{% endblock %}
+{% block body %}
+<section class="simple-head admin-simple"><span class="kicker">ADMIN · CUSTOMER MANAGEMENT</span><h1>Customer accounts</h1><p>Review customer profiles, order activity and lifetime spend without exposing administrative controls.</p></section>
+<section class="admin-table-wrap"><form class="searchbar"><input name="q" value="{{ q }}" placeholder="Search name, username, phone or email…"><button>Search</button></form><div class="admin-table customer-table">{% for c in customers %}<div class="customer-admin-row"><div><b>{{ c.name }}</b><small>@{{ c.user.username }} · {{ c.email|default:'No email' }}</small></div><span>{{ c.phone }}</span><span>{{ c.order_count }} order{{ c.order_count|pluralize }}</span><strong>₹{{ c.total_spend|floatformat:2 }}</strong><a href="/admin/customers/{{ c.id }}/edit/">Edit</a></div>{% empty %}<div class="empty-state">No customers match your search.</div>{% endfor %}</div></section>
+{% endblock %}

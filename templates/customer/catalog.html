@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Saree Collection · Powerloom{% endblock %}
+{% block body %}
+<section class="catalog-head">
+  <div class="catalog-head-inner"><span class="eyebrow">THE POWERLOOM COLLECTION</span><h1>Sarees made by<br><em>the rhythm of the loom.</em></h1><p>Browse available designs, fabrics, colours and prices. Find a weave that feels made for your story.</p></div>
+  <div class="head-orbit" aria-hidden="true"><span></span><i></i><b>PL</b></div>
+</section>
+<section class="catalog-area">
+  <aside class="filters">
+    <div class="filter-title"><span>FILTER</span><b>Refine</b></div>
+    <a class="{% if not category %}selected{% endif %}" href="/catalog/">All sarees <small>All</small></a>
+    {% for key,label in categories %}<a class="{% if category == key %}selected{% endif %}" href="/catalog/?category={{ key }}">{{ label }}</a>{% endfor %}
+    <div class="filter-group"><span>FABRIC</span>{% for x in fabrics %}<a href="/catalog/?fabric={{ x|urlencode }}">{{ x }}</a>{% endfor %}</div>
+    <div class="filter-group"><span>COLOUR</span>{% for x in colours %}<a href="/catalog/?colour={{ x|urlencode }}">{{ x }}</a>{% endfor %}</div>
+  </aside>
+  <div class="catalog-main">
+    <div class="catalog-toolbar">
+      <form class="searchbar"><span class="search-icon">⌕</span><input name="q" value="{{ q }}" placeholder="Search saree, fabric, SKU or story…"><button>Search</button></form>
+      <form class="smart-filters"><select name="sort"><option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest first</option><option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price: low to high</option><option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price: high to low</option><option value="name" {% if sort == 'name' %}selected{% endif %}>Name A–Z</option><option value="popular" {% if sort == 'popular' %}selected{% endif %}>Top rated</option></select><input name="min" value="{{ minp }}" inputmode="decimal" placeholder="Min ₹"><input name="max" value="{{ maxp }}" inputmode="decimal" placeholder="Max ₹"><label><input type="checkbox" name="available" value="1" {% if available %}checked{% endif %}> In stock</label><button class="outline-btn">Apply</button></form>
+    </div>
+    <div class="result-meta"><span>{{ products|length }} curated result{{ products|length|pluralize }}</span><span>Prices shown per saree</span></div>
+    <div class="catalog-grid">
+      {% for p in products %}
+      <article class="shop-card reveal">
+        <div class="shop-image"><a href="/product/{{ p.id }}/"><img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/saree-1.png' %}{% endif %}" loading="lazy"></a>{% if p.stock <= p.low_stock_threshold and p.stock > 0 %}<span class="low-tag">Only {{ p.stock }} left</span>{% elif not p.stock %}<span class="low-tag sold-tag">Sold out</span>{% endif %}<button class="wish-btn" type="button" data-wishlist="{{ p.id }}" aria-label="Save {{ p.name }}">♡</button><span class="image-shine"></span></div>
+        <div class="shop-info"><span class="product-meta">{{ p.get_category_display }} · {{ p.fabric }}</span><h3>{{ p.name }}</h3><p>{{ p.colour }} · {{ p.pattern }}</p><div class="shop-bottom"><div><strong>₹{{ p.price|floatformat:2 }}</strong>{% if p.compare_at_price %}<del>₹{{ p.compare_at_price|floatformat:2 }}</del>{% endif %}</div>{% if p.stock and user.is_authenticated and not user.is_staff %}<form method="post" action="/cart/add/{{ p.id }}/">{% csrf_token %}<input type="hidden" name="quantity" value="1"><input type="hidden" name="next" value="/catalog/"><button class="add-btn">Add to cart <span>+</span></button></form>{% elif not user.is_authenticated %}<a class="add-btn" href="/login/">Login to buy</a>{% endif %}</div></div>
+      </article>
+      {% empty %}<div class="empty-state"><b>No sarees match your filters.</b><a href="/catalog/">Reset collection →</a></div>{% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

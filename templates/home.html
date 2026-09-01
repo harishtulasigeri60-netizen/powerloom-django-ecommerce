@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Powerloom · Woven in Karnataka{% endblock %}
+{% block body %}
+<section class="home-hero">
+  <div class="hero-copy reveal visible">
+    <span class="eyebrow">POWERLOOM COTTON WEAVERS · KARNATAKA</span>
+    <h1>Every thread<br>has a <em>story.</em></h1>
+    <p>Discover sarees shaped by the rhythm of the loom — carefully woven, thoughtfully finished, and made to be worn for years.</p>
+    <div class="hero-actions">
+      <a class="gold-btn" href="/catalog/">Explore sarees <span>→</span></a>
+      <a class="quiet-btn" href="#craft">Our craft</a>
+    </div>
+    <div class="hero-proof"><span>01</span><span>Traceable craft</span><i></i><span>02</span><span>Secure ordering</span></div>
+  </div>
+  <div class="loom-scene" aria-hidden="true">
+    <div class="loom-glow"></div><div class="loom-frame"><i></i><i></i><i></i><i></i><div class="shuttle">◆</div></div>
+    <div class="thread-line l1"></div><div class="thread-line l2"></div><div class="thread-line l3"></div>
+    <div class="floating-thread t1"></div><div class="floating-thread t2"></div>
+  </div>
+</section>
+
+<section id="craft" class="craft-strip reveal">
+  <div class="craft-intro"><span class="eyebrow">THE METHOD</span><h2>Quiet precision.<br>Visible craft.</h2></div>
+  <div class="craft-step"><span>01</span><h3>Warp</h3><p>Foundation threads are stretched with measured tension before the loom begins.</p></div>
+  <div class="craft-step"><span>02</span><h3>Weft</h3><p>Every pass builds the fabric, keeping rhythm, alignment and pattern consistent.</p></div>
+  <div class="craft-step"><span>03</span><h3>Finish</h3><p>Borders, pallu and final detailing turn a woven length into a finished saree.</p></div>
+</section>
+
+<section class="collection collection-home">
+  <div class="section-head reveal"><div><span class="eyebrow">THE COLLECTION</span><h2>Woven favourites</h2><p>Curated pieces for everyday elegance, celebrations and everything between.</p></div><a class="text-link" href="/catalog/">View complete catalogue <span>→</span></a></div>
+  <div class="product-grid">
+    {% for p in featured %}
+      <a class="product-tile reveal" href="/product/{{ p.id }}/">
+        <div class="tile-image"><img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/saree-1.png' %}{% endif %}" loading="lazy"><span>{{ p.get_category_display }}</span><b class="tile-arrow">↗</b></div>
+        <div class="tile-info"><div><h3>{{ p.name }}</h3><small>{{ p.fabric }} · {{ p.colour }}</small></div><strong>₹{{ p.price|floatformat:2 }}</strong></div>
+      </a>
+    {% empty %}
+      {% for p in products %}
+      <a class="product-tile reveal" href="/product/{{ p.id }}/"><div class="tile-image"><img src="{% static 'img/saree-1.png' %}"></div><div class="tile-info"><h3>{{ p.name }}</h3><strong>₹{{ p.price|floatformat:2 }}</strong></div></a>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="craft-stats reveal">
+  <div><strong>100%</strong><span>Traceable craft story</span></div><div><strong>5+</strong><span>Curated categories</span></div><div><strong>1</strong><span>Purpose-built marketplace</span></div><div><strong>∞</strong><span>Threads worth remembering</span></div>
+</section>
+
+<section class="weaver-preview">
+  <div class="section-head reveal"><div><span class="eyebrow">THE PEOPLE BEHIND THE WEAVE</span><h2>Meet the workshop</h2></div></div>
+  <div class="weaver-cards">
+    {% for w in weavers %}<article class="weaver-preview-card reveal"><span>{{ w.years }} YEARS · {{ w.location }}</span><h3>{{ w.name }}</h3><p>{{ w.specialization }}</p><a href="/catalog/">Explore their weaves →</a></article>{% endfor %}
+  </div>
+</section>
+
+<section class="quote"><div class="quote-mark">“</div><p>Good cloth is not made in a hurry. It is built thread by thread.</p><span>— POWERLOOM WORKSHOP</span></section>
+{% endblock %}
