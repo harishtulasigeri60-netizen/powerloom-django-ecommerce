@@ -1,4 +1,4 @@
-\# POWERLOOM — Full-Stack E-Commerce \& Weaver Operations Platform
+# POWERLOOM — Full-Stack E-Commerce & Weaver Operations Platform
 
 
 
@@ -10,19 +10,19 @@ The platform supports product discovery, catalogue management, cart and checkout
 
 
 
-\---
+---
 
 
 
-\## 📸 Application Preview
+## 📸 Application Preview
 
 
 
-\### Customer Experience
+### Customer Experience
 
 
 
-\#### Powerloom Home
+#### Powerloom Home
 
 
 
@@ -30,15 +30,15 @@ The landing page introduces the Powerloom brand, its craft identity and the sare
 
 
 
-!\[Powerloom Home](screenshots/Screenshot%202026-09-01%20223919.png)
+![Powerloom Home](screenshots/Screenshot%202026-09-01%20223919.png)
 
 
 
-\---
+---
 
 
 
-\#### Saree Collection
+#### Saree Collection
 
 
 
@@ -46,15 +46,15 @@ Customers can browse sarees using catalogue filters, search, pricing and availab
 
 
 
-!\[Saree Collection](screenshots/Screenshot%202026-09-01%20224152.png)
+![Saree Collection](screenshots/Screenshot%202026-09-01%20224152.png)
 
 
 
-\---
+---
 
 
 
-\#### Product Details
+#### Product Details
 
 
 
@@ -62,15 +62,15 @@ Customers can view detailed product information, pricing, availability and selec
 
 
 
-!\[Product Details](screenshots/Screenshot%202026-09-01%20224343.png)
+![Product Details](screenshots/Screenshot%202026-09-01%20224343.png)
 
 
 
-\---
+---
 
 
 
-\#### Shopping Cart
+#### Shopping Cart
 
 
 
@@ -78,15 +78,15 @@ The cart calculates item totals according to quantity and provides the complete 
 
 
 
-!\[Shopping Cart](screenshots/Screenshot%202026-09-01%20224548.png)
+![Shopping Cart](screenshots/Screenshot%202026-09-01%20224548.png)
 
 
 
-\---
+---
 
 
 
-\#### Order Confirmation \& Tracking
+#### Order Confirmation & Tracking
 
 
 
@@ -94,15 +94,15 @@ After placing an order, customers can view the order number, purchased products,
 
 
 
-!\[Order Confirmation](screenshots/Screenshot%202026-09-01%20224735.png)
+![Order Confirmation](screenshots/Screenshot%202026-09-01%20224735.png)
 
 
 
-\---
+---
 
 
 
-\## 🔐 Admin Operations
+## 🔐 Admin Operations
 
 
 
@@ -110,7 +110,7 @@ The platform provides a separate administrative experience for managing the busi
 
 
 
-\### Admin Dashboard
+### Admin Dashboard
 
 
 
@@ -118,15 +118,15 @@ The admin dashboard provides an overview of catalogue size, available stock, cus
 
 
 
-!\[Admin Dashboard](screenshots/Screenshot%202026-09-01%20225051.png)
+![Admin Dashboard](screenshots/Screenshot%202026-09-01%20225051.png)
 
 
 
-\---
+---
 
 
 
-\### Inventory \& Stock Control
+### Inventory & Stock Control
 
 
 
@@ -134,15 +134,15 @@ Administrators can monitor available stock and perform stock adjustments while m
 
 
 
-!\[Inventory Management](screenshots/Screenshot%202026-09-01%20225238.png)
+![Inventory Management](screenshots/Screenshot%202026-09-01%20225238.png)
 
 
 
-\---
+---
 
 
 
-\### Customer Order Management
+### Customer Order Management
 
 
 
@@ -150,65 +150,65 @@ Administrators can search and filter customer orders, view order information and
 
 
 
-!\[Customer Orders](screenshots/Screenshot%202026-09-01%20225533.png)
+![Customer Orders](screenshots/Screenshot%202026-09-01%20225533.png)
 
 
 
-\---
+---
 
 
 
-\# ✨ Key Features
+# ✨ Key Features
 
 
 
-\## Customer Features
+## Customer Features
 
 
 
-\- Customer registration and login
+- Customer registration and login
 
-\- Secure customer-only shopping experience
+- Secure customer-only shopping experience
 
-\- Saree catalogue browsing
+- Saree catalogue browsing
 
-\- Search and filtering
+- Search and filtering
 
-\- Category, fabric and colour filters
+- Category, fabric and colour filters
 
-\- Product detail pages
+- Product detail pages
 
-\- Wishlist functionality
+- Wishlist functionality
 
-\- Quantity-based cart calculations
+- Quantity-based cart calculations
 
-\- Server-side price verification
+- Server-side price verification
 
-\- Stock availability validation
+- Stock availability validation
 
-\- Checkout workflow
+- Checkout workflow
 
-\- Customer order history
+- Customer order history
 
-\- Order detail and status tracking
+- Order detail and status tracking
 
-\- Order cancellation
+- Order cancellation
 
-\- PDF receipt generation
+- PDF receipt generation
 
-\- Customer notifications
+- Customer notifications
 
-\- Profile management
+- Profile management
 
-\- Product reviews
-
-
-
-\---
+- Product reviews
 
 
 
-\## Admin Features
+---
+
+
+
+## Admin Features
 
 
 
@@ -216,43 +216,43 @@ Administrators have a separate role-secured interface for business operations.
 
 
 
-\- Admin authentication
+- Admin authentication
 
-\- Admin dashboard
+- Admin dashboard
 
-\- Catalogue management
+- Catalogue management
 
-\- Add new sarees
+- Add new sarees
 
-\- Edit saree information
+- Edit saree information
 
-\- Price modification
+- Price modification
 
-\- Category management
+- Category management
 
-\- Inventory management
+- Inventory management
 
-\- Stock adjustments
+- Stock adjustments
 
-\- Customer management
+- Customer management
 
-\- Customer order management
+- Customer order management
 
-\- Order status updates
+- Order status updates
 
-\- Order filtering and search
+- Order filtering and search
 
-\- Coupon/offer management
+- Coupon/offer management
 
-\- Weaver/workshop information
+- Weaver/workshop information
 
-\- Craft and production tracking
+- Craft and production tracking
 
-\- Sales and revenue overview
+- Sales and revenue overview
 
-\- Best-seller insights
+- Best-seller insights
 
-\- PDF receipt generation
+- PDF receipt generation
 
 
 
@@ -264,11 +264,11 @@ Administrators use the platform for business management rather than purchasing p
 
 
 
-\---
+---
 
 
 
-\# 🛡️ Role-Based Access Control
+# 🛡️ Role-Based Access Control
 
 
 
@@ -276,7 +276,7 @@ The application separates the two primary user roles:
 
 
 
-\### Customer
+### Customer
 
 
 
@@ -284,19 +284,19 @@ Customers can:
 
 
 
-\- Browse products
+- Browse products
 
-\- View product details
+- View product details
 
-\- Add products to wishlist
+- Add products to wishlist
 
-\- Add products to cart
+- Add products to cart
 
-\- Purchase products
+- Purchase products
 
-\- Track their orders
+- Track their orders
 
-\- Manage their profile
+- Manage their profile
 
 
 
@@ -304,21 +304,21 @@ Customers cannot:
 
 
 
-\- Modify product prices
+- Modify product prices
 
-\- Modify inventory
+- Modify inventory
 
-\- Create categories
+- Create categories
 
-\- Manage other customers
+- Manage other customers
 
-\- Update customer orders
+- Update customer orders
 
-\- Access administrative dashboards
+- Access administrative dashboards
 
 
 
-\### Admin
+### Admin
 
 
 
@@ -326,21 +326,21 @@ Administrators can:
 
 
 
-\- Manage products
+- Manage products
 
-\- Modify prices
+- Modify prices
 
-\- Manage categories
+- Manage categories
 
-\- Update inventory
+- Update inventory
 
-\- Manage customers
+- Manage customers
 
-\- Process customer orders
+- Process customer orders
 
-\- Update order statuses
+- Update order statuses
 
-\- Monitor business operations
+- Monitor business operations
 
 
 
@@ -348,11 +348,11 @@ Administrators do not use the customer purchasing workflow.
 
 
 
-\---
+---
 
 
 
-\# 🧮 Quantity-Based Pricing
+# 🧮 Quantity-Based Pricing
 
 
 
@@ -372,11 +372,11 @@ Unit Price × Quantity = Line Total
 
 Line Total 1
 
-\+ Line Total 2
++ Line Total 2
 
-\+ Line Total 3
++ Line Total 3
 
-\-------------------
+-------------------
 
 Order Subtotal
 
