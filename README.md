@@ -379,6 +379,46 @@ Line Total 1
 -------------------
 
 Order Subtotal
-
 ```
+---
 
+## 🧰 Tech Stack
+
+- **Backend:** Python, Django
+- **Frontend:** HTML, CSS, JavaScript, Django Templates
+- **Database:** SQLite
+- **Authentication:** Django authentication with role-based access control
+- **Media:** Django media/file uploads
+- **Documents:** PDF receipt generation
+- **Deployment Support:** Docker, Docker Compose
+- **Version Control:** Git, GitHub
+
+---
+
+## 🏗️ Project Architecture
+
+The application is organized around a Django project with a dedicated store application.
+
+```text
+Powerloom
+│
+├── powerloom/          # Django project configuration
+├── store/              # Core e-commerce and business logic
+│   ├── models.py       # Products, orders, inventory and related data
+│   ├── views.py        # Customer and admin workflows
+│   ├── forms.py        # Application forms
+│   ├── urls.py         # Store routes
+│   └── management/     # Demo/bootstrap commands
+│
+├── templates/
+│   ├── customer/       # Customer-facing pages
+│   ├── admin/          # Admin operations interface
+│   └── auth/           # Authentication pages
+│
+├── static/             # CSS, JavaScript and static images
+├── media/              # Product media
+├── screenshots/        # Application screenshots
+├── requirements.txt    # Python dependencies
+├── Dockerfile          # Container configuration
+└── docker-compose.yml  # Docker development setup
+```
