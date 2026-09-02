@@ -1,5 +1,15 @@
 Django>=5.2,<6.0
+
 Pillow>=11.0
+
 reportlab>=4.0
+
 psycopg[binary]>=3.2
+
 python-dotenv>=1.0
+
+dj-database-url>=2.2
+
+whitenoise>=6.8
+
+gunicorn>=23.0
